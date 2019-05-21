@@ -10,7 +10,7 @@ frames = configs.shape[0]
 
 fig, ax = plt.subplots()
 fig.set_size_inches(3, 3)
-img = ax.imshow(np.ones((size, size)), vmin=-1, vmax=1)
+img = ax.imshow(np.ones((size, size)), vmin=-1.5, vmax=1.5, cmap='bwr')
 
 def run(frame):
     # update the data
