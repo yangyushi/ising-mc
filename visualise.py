@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
-configs = np.loadtxt('configure.csv', delimiter=',')
+configs = np.loadtxt('movie.csv', delimiter=',')
 size = int(configs.shape[1] ** 0.5)
 frames = configs.shape[0]
 
