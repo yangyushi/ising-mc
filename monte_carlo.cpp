@@ -44,7 +44,7 @@ vector<int> sweep(vector<int> config, float beta, map<int, float> prob_table){
 
         delta_energy = spin_sum * config[site];
 
-        rand_num = (float) rand() / RAND_MAX;  // random num ~(0, 1)
+        rand_num = (float) rand() / RAND_MAX;  // random num ~ (0, 1)
 
         if (delta_energy <= 0) { // accept
             config[site] = -config[site];

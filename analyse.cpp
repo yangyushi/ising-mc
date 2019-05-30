@@ -57,7 +57,7 @@ float get_m_average(string fname){
 }
 
 float get_moment(vector<float> data, int order){
-    float result = 0.0;
+    double result = 0;
     int count = 0;
     for (auto num : data){
         result += pow(num, order);
@@ -69,23 +69,26 @@ float get_moment(vector<float> data, int order){
 float get_c(string fname, float beta){
     float e1 = 0;
     float e2 = 0;
+    float var = 0;
+    int N = 0;
     ifstream ist {fname}; string line;
     vector<string> config_str;
     vector<int> config;
     vector<float> energies;
-    int N = 0;
+
     while (getline(ist, line)){
         config_str.clear();
         config.clear();
         boost::split(config_str, line, boost::is_any_of(",\t"));
-        // this looks very wrong
         for (auto s:config_str) {
             config.push_back(stoi(s));
         }
         N = config.size();
         energies.push_back(get_e(config));
     }
+
     e1 = get_moment(energies, 1);
     e2 = get_moment(energies, 2);
-    return pow(beta, 2) / N * (e2 - pow(e1, 2));
+    var = e2 - pow(e1, 2); // variance of energy
+    return var * pow(beta, 2) / N;  // c = var / (N * T^2)
 }
