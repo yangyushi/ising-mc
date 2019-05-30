@@ -2,12 +2,19 @@
 
 map<int, float> get_prob_table(float beta){
     /*
-     * only 2 energy differences are worth writing down: +2J and +4J
-     * all non positive energy diff would yield A = 1
+     * all non positive energy diff would yield Acceptance -> 1
+     *
+     * only 2 energy differences are worth writing down: +4J and +8J
+     *
+     *      ΔE= +4J       |      ΔE= +8J
+     *   ↑          ↑     |   ↑          ↑
+     * ↑ ↑ ↓ ---> ↑ ↓ ↓   | ↑ ↑ ↑      ↑ ↓ ↑
+     *   ↑          ↑     |   ↑          ↑
+     *  -2J        +2J    |  -4J        +4J
      */
     map<int, float> prob_table;
     for (int i=1; i<3; i++){
-        prob_table[2 * i] = exp(-2 * beta * i);
+        prob_table[2 * i] = exp(-4 * beta * i);
     }
     return prob_table;
 }
